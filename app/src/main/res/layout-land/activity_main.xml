@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.sperotti.alessandro.iocalc.MainActivity"
+    android:background="@color/colorBackGround"
+    >
+
+
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_height="45dp"
+        app:tabIndicatorColor="@android:color/white"
+        android:background="@color/colorTab"
+        app:tabTextColor="@android:color/white"
+        app:tabSelectedTextColor="@android:color/white"
+        android:elevation="10dp"
+        >
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/num_converter"
+            />
+
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mips_converter" />
+    </android.support.design.widget.TabLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+
+    <TextView
+        android:text="@string/numconv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="70dp"
+        android:textStyle="normal|bold"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginLeft="30dp"
+        android:background="@android:color/white"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:elevation="10dp"
+        >
+
+        <TextView
+            android:text="@string/decimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textStyle="normal|bold"
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp" />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/decimal"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
+            android:hint="1720"
+            android:layout_marginLeft="10dp"/>
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#80000000"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:text="@string/binary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:textStyle="normal|bold"
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/binary"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
+            android:hint="0110 1011 1000"
+            android:layout_marginLeft="10dp"
+            android:maxLength="31"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#80000000"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:text="@string/hex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:textStyle="normal|bold"
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/hex"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:inputType="textCapWords"
+            android:hint="6B8"
+            android:layout_marginLeft="10dp"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#80000000"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:text="@string/oct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:textStyle="normal|bold"
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/oct"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:inputType="numberDecimal"
+            android:hint="3270"
+            android:layout_marginLeft="10dp"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#80000000"
+            android:layout_marginTop="15dp"
+            />
+
+    </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>

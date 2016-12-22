@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">IOCalc</string>
+    <string name="action_settings">Impostazioni</string>
+    <string name="num_converter">Number Converter</string>
+    <string name="mips_converter">MIPS Converter</string>
+    <string name="numconv_title">Convertitore di Base</string>
+    <string name="decimal">Decimale</string>
+    <string name="binary">Binario</string>
+    <string name="hex">Esadecimale</string>
+    <string name="oct">Ottale</string>
+    <string name="wrong">Input Errato!</string>
+    <string name="bin_settings">Codifica Binaria</string>
+    <string name="compl2">Complemento a Due</string>
+    <string name="compl1">Complemento a Uno</string>
+    <string name="codbin_title">Codifica Binaria</string>
+    <string name="formatbin_descr">Scegli la codifica binaria preferita</string>
+    <string name="codbin_descr">Scegli la codifica binaria preferita</string>
+    <string name="instruction">Istruzione</string>
+    <string name="values">Valori</string>
+    <string name="action_about">Informazioni</string>
+    <string name="io"><u>Alessandro Sperotti</u></string>
+    <string name="ratetitle">Vota questa app!</string>
+    <string name="ratenow">Vota Ora!</string>
+    <string name="rateno">No Grazie</string>
+    <string name="ratelater">Più tardi</string>
+    <string name="ratemex">Se ti è piaciuto utilizzare quest\'app, che ne dici di votarla? Non ci vorrà più di un minuto. Grazie per il tuo supporto!</string>
+    <string name="aboutdesign">Sviluppata da Alessandro Sperotti</string>
+    <string name="ratebutton">Vota l\'app</string>
+    <string name="visitwebsite">Visita il sito</string>
+    <string name="secret">Messaggio Segreto!</string>
+    <string name="copy">Copia Testo</string>
+    <string name="unsigned">Intero</string>
+
+</resources>

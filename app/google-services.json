@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "576411506735",
+    "project_id": "firebase-iocalc"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576411506735:android:1ae62e1101ac8c90",
+        "android_client_info": {
+          "package_name": "com.sperotti.alessandro.iocalc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQGZaJp9DoSB2TsLS6EsIqFk5_WtPoF2E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-89187408-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

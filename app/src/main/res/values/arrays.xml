@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    tools:ignore="MissingTranslation"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <string-array name="codifica_binaria">
+        <item>@string/unsigned</item>
+        <item>@string/compl1</item>
+        <item>@string/compl2</item>
+
+    </string-array>
+
+    <string-array name="codbin_alias">
+        <item>unsigned</item>
+        <item>compl1</item>
+        <item>compl2</item>
+    </string-array>
+
+
+
+</resources>

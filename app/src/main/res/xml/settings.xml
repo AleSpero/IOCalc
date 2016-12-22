@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/numconv_title" >
+
+        <ListPreference
+            android:defaultValue="@string/compl2"
+            android:dialogTitle="@string/codbin_title"
+            android:entries="@array/codifica_binaria"
+            android:entryValues="@array/codbin_alias"
+
+            android:key="codbin"
+            android:summary="@string/formatbin_descr"
+            android:title="@string/codbin_title"
+            ></ListPreference>
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
