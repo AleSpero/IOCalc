@@ -17,8 +17,39 @@ Features:
 - MIPS instruction converter, from testual to hexadecimal, and viceversa
 - R, J and I type instruction supported.
 
-The only languages supported for now are English and Italian. if you want to add more, feel free to contribute! (there are no more than 20 strings in the strings.xml file).
+## Contribute
+
+The only languages supported for now are English and Italian. if you want to add more, feel free to contribute! (there are no more than 20 strings in the strings.xml file, it's an easy job :P ).
+
+## License
+
+```
+MIT License
+
+Copyright (c) [year] [fullname]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
 ## Credits
 
 This app uses the [Rate This App](https://github.com/kobakei/Android-RateThisApp) library, made by Keisuke Kobayashi
+
+## Author
+Made By Alessandro Sperotti. alessandrosperotti at gmail dot com
