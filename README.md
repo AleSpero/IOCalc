@@ -26,7 +26,7 @@ The only languages supported for now are English and Italian. if you want to add
 ```
 MIT License
 
-Copyright (c) 2016 Alessandro Sperotti
+Copyright (c) 2018 Alessandro Sperotti
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -52,4 +52,8 @@ SOFTWARE.
 This app uses the [Rate This App](https://github.com/kobakei/Android-RateThisApp) library, made by Keisuke Kobayashi.
 
 ## Author
-Made By Alessandro Sperotti. alessandrosperotti at gmail dot com
+Made By [Alessandro Sperotti](www.alessandrosperotti.com). alessandrosperotti at gmail dot com
+
+If you liked this app, why don't you offer me a coffee (or a beer? :D)
+
+ETH: 0x70b6b9eaCDf6f76ECb92bE3fb81d72B3971BA1Bc
