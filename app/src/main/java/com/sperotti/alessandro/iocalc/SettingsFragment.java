@@ -23,7 +23,7 @@ public class SettingsFragment extends PreferenceFragment {
    /*@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        binencoding = (ListPreference)  getPreferenceManager().findPreference("codbin");
+        binencoding = (ListPreference)  getPreferenceManager().findPreference(Constants.BINARY_CODEC);
         binencoding.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {

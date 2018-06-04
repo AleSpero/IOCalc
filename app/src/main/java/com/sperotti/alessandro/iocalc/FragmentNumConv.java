@@ -50,8 +50,6 @@ public class FragmentNumConv extends Fragment {
     Toast toast;
 
     //Variabili temporanee
-
-    ArrayList<String> T = new ArrayList<String>();
     int numTemp;
     String temp;
     String tempSpace = "";
@@ -84,18 +82,18 @@ public class FragmentNumConv extends Fragment {
 
         //PREFERENZA CODIFICA BINARIA
 
-        binaryEncoding = pref.getString("codbin", "compl2");
+        binaryEncoding = pref.getString(Constants.BINARY_CODEC, Constants.TWO_COMPLEMENT);
 
         toast = Toast.makeText(getActivity(), R.string.wrong, Toast.LENGTH_SHORT);
 
-        binary = (EditText) view.findViewById(R.id.binary);
-        decimal = (EditText) view.findViewById(R.id.decimal);
-        hex = (EditText) view.findViewById(R.id.hex);
-        oct = (EditText)view.findViewById(R.id.oct);
+        binary = view.findViewById(R.id.binary);
+        decimal = view.findViewById(R.id.decimal);
+        hex = view.findViewById(R.id.hex);
+        oct = view.findViewById(R.id.oct);
 
         //CAMBIO INPUTTYPE SE "UNSIGNED" E' SELEZIONATO E VICEVERSA
 
-        if(binaryEncoding.equals("unsigned")){
+        if(binaryEncoding.equals(Constants.UNSIGNED)){
             decimal.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
             oct.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
         }
@@ -145,58 +143,23 @@ public class FragmentNumConv extends Fragment {
 
                                 numTemp = Integer.parseInt(decimal.getText().toString());
 
-                                //SE IL NUMERO E' NEGATIVO
-
-                                if (numTemp < 0) {
-
                                     //FAI IN MODO CHE NEL CASO DI UNSIGNED NON SIA INSERIRE IL MENO
 
-                                    switch (binaryEncoding) {
-                                        case "compl1":
-                                            binRes = Calcolatore.onesComplement(Calcolatore.binToDec(Math.abs(numTemp)));
-
-                                            /* Problema uni binario
-                                            tempChar=binRes.charAt(0);
-                                            if(tempChar=='0'){
-                                                binRes="1"+Calcolatore.onesComplement(Calcolatore.binToDec(Math.abs(numTemp)));
-                                                Log.d("","1"+Calcolatore.binToDec(Math.abs(numTemp)));
-                                            }*/
-                                            break;
-
-                                        case "compl2":
-                                            binRes = Calcolatore.twosComplement(Calcolatore.binToDec(Math.abs(numTemp)));
-
-                                           /* Problema uni binario
-                                            tempChar=binRes.charAt(0);
-                                            if(tempChar=='0'){
-                                                binRes="1"+Calcolatore.twosComplement(Calcolatore.binToDec(Math.abs(numTemp)));
-                                                Log.d("","1"+Calcolatore.binToDec(Math.abs(numTemp)));
-                                            }*/
-                                            break;
-                                    }
+                                    binRes = Constants.TWO_COMPLEMENT.equals(binaryEncoding) ? Calcolatore.twosComplement(Calcolatore.binToDec(Math.abs(numTemp)))
+                                            : Calcolatore.onesComplement(Calcolatore.binToDec(Math.abs(numTemp)));
 
                                     //AGGIUNGO ZERI O UNI IN BASE ALLA CODIFICA SCELTA
 
                                     binary.setText(Calcolatore.formatBinary(binRes));
 
+                                    hexRes = numTemp < 0 ? Calcolatore.hexToDec(Integer.parseInt(Calcolatore.binToDec(binRes)))
+                                    : Calcolatore.hexToDec(Integer.parseInt(decimal.getText().toString()));
 
-                                    hexRes = Calcolatore.hexToDec(Integer.parseInt(Calcolatore.binToDec(binRes)));
                                     hex.setText(hexRes.toUpperCase());
 
                                     octRes = Calcolatore.octToDec(Math.abs(numTemp));
-                                    oct.setText("-" + octRes);
+                                    oct.setText(numTemp < 0 ? String.format("-%s",octRes) : octRes);
 
-                                } else {
-
-                                    binRes = Calcolatore.binToDec(numTemp);
-                                    binary.setText(Calcolatore.formatBinary(binRes));
-
-                                    hexRes = Calcolatore.hexToDec(Integer.parseInt(decimal.getText().toString()));
-                                    hex.setText(hexRes.toUpperCase());
-
-                                    octRes = Calcolatore.octToDec(Math.abs(numTemp));
-                                    oct.setText(octRes);
-                                }
                             } else {
                                 binary.setText("");
                                 hex.setText("");
@@ -296,15 +259,15 @@ public class FragmentNumConv extends Fragment {
                             //controllo il primo bit: se è 1 allora il numero è negativo e faccio il complemento a due, altrimenti lo tratto come se fosse unsigned
 
 
-                            if(!binaryEncoding.equals("unsigned") && temp.charAt(0)=='1'){
+                            if(!binaryEncoding.equals(Constants.UNSIGNED) && temp.charAt(0)=='1'){
 
                                 switch(binaryEncoding){
 
-                                    case "compl1":
+                                    case Constants.ONE_COMPLEMENT:
                                         decRes = "-"+Calcolatore.binToDec(Calcolatore.onesComplement(temp));
                                         break;
 
-                                    case "compl2":
+                                    case Constants.TWO_COMPLEMENT:
                                         decRes = "-"+Calcolatore.binToDec(Calcolatore.twosComplement(temp));
                                         break;
 
@@ -411,11 +374,7 @@ public class FragmentNumConv extends Fragment {
 
                     }
                     else{
-                        decimal.setText("");
-                        binary.setText("");
-                        oct.setText("");
-                        toast.show();
-
+                        showError();
                     }
 
 
@@ -474,7 +433,7 @@ public class FragmentNumConv extends Fragment {
                                             binRes = Calcolatore.onesComplement(Calcolatore.binToDec(Math.abs(numTemp)));
                                             break;
 
-                                        case "compl2":
+                                        case Constants.TWO_COMPLEMENT:
                                             numTemp = Integer.parseInt(Calcolatore.octToDec(""+Math.abs(numTemp)));
                                             decRes = "-"+numTemp;
                                             binRes = Calcolatore.twosComplement(Calcolatore.binToDec(Math.abs(numTemp)));
@@ -569,10 +528,10 @@ public class FragmentNumConv extends Fragment {
 
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
-        binaryEncoding = pref.getString("codbin", "compl2");
+        binaryEncoding = pref.getString(Constants.BINARY_CODEC, Constants.TWO_COMPLEMENT);
 
 
-           if (binaryEncoding.equals("unsigned")) {
+           if (binaryEncoding.equals(Constants.UNSIGNED)) {
                decimal.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_CLASS_NUMBER);
                oct.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_CLASS_NUMBER);
            } else {
@@ -583,6 +542,13 @@ public class FragmentNumConv extends Fragment {
 
         super.onResume();
 
+    }
+
+    public void showError(){
+        decimal.setText("");
+        binary.setText("");
+        oct.setText("");
+        toast.show();
     }
 
 }
