@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -14,8 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 
 import java.util.ArrayList;
 
@@ -48,26 +47,16 @@ public class FragmentNumConv extends Fragment {
     String binaryEncoding;
 
     Toast toast;
+    Snackbar inputErrorSnackbar;
 
     //Variabili temporanee
     int numTemp;
     String temp;
     String tempSpace = "";
 
-    private Tracker mTracker;
-
     public static FragmentNumConv newInstance() {
         FragmentNumConv fragment = new FragmentNumConv();
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) getActivity().getApplication();
-        mTracker = application.getDefaultTracker();
     }
 
     @Override
@@ -85,6 +74,7 @@ public class FragmentNumConv extends Fragment {
         binaryEncoding = pref.getString(Constants.BINARY_CODEC, Constants.TWO_COMPLEMENT);
 
         toast = Toast.makeText(getActivity(), R.string.wrong, Toast.LENGTH_SHORT);
+        inputErrorSnackbar = Snackbar.make(getActivity().findViewById(R.id.activity_main), R.string.wrong, Snackbar.LENGTH_LONG);
 
         binary = view.findViewById(R.id.binary);
         decimal = view.findViewById(R.id.decimal);
@@ -124,12 +114,6 @@ public class FragmentNumConv extends Fragment {
             public void afterTextChanged(Editable editable) {
 
                 if(decimal.isFocused()){
-
-                    mTracker.send(new HitBuilders.EventBuilder()
-                            .setCategory("Number Calculator")
-                            .setAction("Converti")
-                            .setLabel("Partendo da Decimale")
-                            .build());
 
                     //Se ho messo solo meno, non faccio niente
 
@@ -181,49 +165,18 @@ public class FragmentNumConv extends Fragment {
 
         binary.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
 
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                        /*if (binary.isFocused()) {
-                            binary.clearFocus();
-
-
-                        if((binary.getText().toString().length()%4 == 0 && tempSpace.length()>binary.getText().toString().length()) || tempSpace.isEmpty()){
-                            binary.setText(binary.getText()+" ");
-                        binary.setSelection(binary.getText().length());
-                            tempSpace=binary.getText().toString();
-
-                    }
-                        }
-
-                        binary.requestFocus();
-*/
-            }
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
 
             @Override
             public void afterTextChanged(Editable editable) {
 
                 if(binary.isFocused()){
 
-                    mTracker.send(new HitBuilders.EventBuilder()
-                            .setCategory("Number Calculator")
-                            .setAction("Converti")
-                            .setLabel("Partendo da Binario")
-                            .build());
-
                     temp = binary.getText().toString().replaceAll("\\s+","");
-
-                            /*Log.d("RESTO 4?",(temp.length()%4 == 0)+"");
-                            Log.d("LUNGHEZZA DIVERSA DA 0?",(temp.length()!=0)+"");
-                            Log.d("lunghez tempspace>temp?",""+tempSpace.length()+" "+temp.length()+"  "+(tempSpace.length()<temp.length()));
-                            Log.d("tempspace?",""+tempSpace.isEmpty());
-                            Log.d("","");*/
-
 
                     if(temp.length()==tempSpace.length()){
                         binary.clearFocus();                                // clear filters
@@ -248,7 +201,7 @@ public class FragmentNumConv extends Fragment {
 
                     //Controllo errori di input da parte dell'utente (se inserisce 2, o un simbolo) e controllo se il campo è vuoto
 
-                    if(temp.matches("[01]+") || temp.isEmpty()) {
+                    if(temp.matches(Constants.BINARY_REGEX) || temp.isEmpty()) {
 
                         //Caso particolare: controllo se il campo NON è vuoto
 
@@ -283,7 +236,7 @@ public class FragmentNumConv extends Fragment {
                                 hex.setText(hexRes.toUpperCase());
 
                                 octRes = Calcolatore.octToDec(Math.abs(Integer.parseInt(decimal.getText().toString())));
-                                oct.setText("-" + octRes);
+                                oct.setText(String.format("-%s", octRes));
 
                             }
 
@@ -309,16 +262,7 @@ public class FragmentNumConv extends Fragment {
 
                     }
                     //temp.matches("[01]+") || temp.isEmpty()
-                    else{
-                        decimal.setText("");
-                        hex.setText("");
-                        oct.setText("");
-                        toast.show();
-
-                    }
-
-
-
+                    else showError(Constants.BINARY);
 
                 }
 
@@ -342,16 +286,10 @@ public class FragmentNumConv extends Fragment {
 
                 if(hex.isFocused()){
 
-                    mTracker.send(new HitBuilders.EventBuilder()
-                            .setCategory("Number Calculator")
-                            .setAction("Converti")
-                            .setLabel("Partendo da Esadecimale")
-                            .build());
-
                     temp = hex.getText().toString().toUpperCase();
 
 
-                    if(temp.matches("[0123456789ABCDEF]+") || temp.isEmpty()){
+                    if(temp.matches(Constants.HEX_REGEX) || temp.isEmpty()){
 
                         if(!temp.isEmpty()) {
 
@@ -366,19 +304,10 @@ public class FragmentNumConv extends Fragment {
                             oct.setText(octRes);
                         }
 
-                        else{
-                            decimal.setText("");
-                            binary.setText("");
-                            oct.setText("");
-                        }
-
                     }
                     else{
-                        showError();
+                        showError(Constants.HEX);
                     }
-
-
-
 
                 }
 
@@ -402,12 +331,6 @@ public class FragmentNumConv extends Fragment {
 
                 if(oct.isFocused()){
 
-                    mTracker.send(new HitBuilders.EventBuilder()
-                            .setCategory("Number Calculator")
-                            .setAction("Converti")
-                            .setLabel("Partendo da Octale")
-                            .build());
-
                     temp=oct.getText().toString();
 
                     if(!temp.equals("-")) {
@@ -416,29 +339,20 @@ public class FragmentNumConv extends Fragment {
 
                         try {
 
-                            if (temp.matches("[-01234567]+") && !temp.isEmpty()) {
+                            if (temp.matches(Constants.OCTAL_REGEX) && !temp.isEmpty()) {
 
                                 numTemp = Integer.parseInt(oct.getText().toString());
 
                                 //SE IL NUMERO E' NEGATIVO
 
-                                if (numTemp < 0) {
+                                //if (numTemp < 0) {
 
                                     //FAI IN MODO CHE NEL CASO DI UNSIGNED NON SIA INSERIRE IL MENO
 
-                                    switch (binaryEncoding) {
-                                        case "compl1":
-                                            numTemp = Integer.parseInt(Calcolatore.octToDec(""+Math.abs(numTemp)));
-                                            decRes = "-"+numTemp;
-                                            binRes = Calcolatore.onesComplement(Calcolatore.binToDec(Math.abs(numTemp)));
-                                            break;
-
-                                        case Constants.TWO_COMPLEMENT:
-                                            numTemp = Integer.parseInt(Calcolatore.octToDec(""+Math.abs(numTemp)));
-                                            decRes = "-"+numTemp;
-                                            binRes = Calcolatore.twosComplement(Calcolatore.binToDec(Math.abs(numTemp)));
-                                            break;
-                                    }
+                                    numTemp = Integer.parseInt(Calcolatore.octToDec(String.valueOf(Math.abs(numTemp))));
+                                    decRes = numTemp < 0 ? String.format("-%s",numTemp) : Calcolatore.octToDec(String.valueOf(Math.abs(numTemp)));
+                                    binRes = Constants.ONE_COMPLEMENT.equals(binaryEncoding) ? Calcolatore.onesComplement(Calcolatore.binToDec(Math.abs(numTemp)))
+                                            : Calcolatore.twosComplement(Calcolatore.binToDec(Math.abs(numTemp)));
 
                                     //AGGIUNGO ZERI O UNI IN BASE ALLA CODIFICA SCELTA
 
@@ -449,9 +363,9 @@ public class FragmentNumConv extends Fragment {
                                     hex.setText(hexRes.toUpperCase());
 
 
-                                } else {
+                                /*} else {
 
-                                    decRes = Calcolatore.octToDec(""+Math.abs(numTemp));
+                                    decRes = Calcolatore.octToDec(String.valueOf(Math.abs(numTemp)));
                                     decimal.setText(decRes);
 
                                     binRes = Calcolatore.binToDec(Integer.parseInt(decimal.getText().toString()));
@@ -461,56 +375,12 @@ public class FragmentNumConv extends Fragment {
                                     hex.setText(hexRes.toUpperCase());
 
 
-                                }
-                            } else {
-                                binary.setText("");
-                                hex.setText("");
-                                decimal.setText("");
+                                }*/
                             }
                         } catch (NumberFormatException e) {
-                            binary.setText("");
-                            hex.setText("");
-                            decimal.setText("");
-                            toast.show();
+                            showError(Constants.OCTAL);
                         }
                     }
-
-
-
-
-                   /* temp = oct.getText().toString();
-
-
-
-                        if(temp.matches("[-01234567]+") || temp.isEmpty()) {
-
-                            if(!temp.isEmpty()){
-
-                            decRes = Calcolatore.octToDec(temp);
-                            binRes = Calcolatore.binToDec(Integer.parseInt(decRes));
-                            hexRes = Calcolatore.hexToDec(Integer.parseInt(decRes));
-
-                            decimal.setText(decRes);
-                            binary.setText(binRes);
-                            hex.setText(hexRes.toUpperCase());
-                        }
-
-                        else{
-                            decimal.setText("");
-                            binary.setText("");
-                            hex.setText("");
-                        }
-
-
-                        }
-
-                    else{
-                        binary.setText("");
-                        hex.setText("");
-                        decimal.setText("");
-                            toast.show();
-                    }*/
-
                 }
             }
 
@@ -522,10 +392,6 @@ public class FragmentNumConv extends Fragment {
 
    @Override
     public void onResume() {
-
-       mTracker.setScreenName("Image~" + "Number Converter");
-       mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
         binaryEncoding = pref.getString(Constants.BINARY_CODEC, Constants.TWO_COMPLEMENT);
@@ -544,11 +410,12 @@ public class FragmentNumConv extends Fragment {
 
     }
 
-    public void showError(){
-        decimal.setText("");
-        binary.setText("");
-        oct.setText("");
-        toast.show();
+    public void showError(int keepEdt){
+        if(keepEdt != Constants.DECIMAL) decimal.setText("");
+        if(keepEdt != Constants.BINARY) binary.setText("");
+        if(keepEdt != Constants.OCTAL) oct.setText("");
+        if(keepEdt != Constants.HEX) hex.setText("");
+        if(!inputErrorSnackbar.isShown()) inputErrorSnackbar.show();
     }
 
 }

@@ -9,8 +9,8 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 
 public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
-    final int PAGE_COUNT = 2;
-    private String tabTitles[] = new String[] { "Number Converter", "MIPS Converter"};
+    private final int PAGE_COUNT = 2;
+    private String tabTitles[] = new String[] { "Number Converter", "MIPS Converter"}; //"Hex To String", "MIPS Converter"};
     private int nTabs;
 
     public SampleFragmentPagerAdapter(FragmentManager fm, int nTab) {
@@ -25,12 +25,25 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if(position==0) {
-            return FragmentNumConv.newInstance();
-        }
-        else{
-            return MipsCalculator.newInstance();
-        }
+
+        Fragment newFragment =  FragmentNumConv.newInstance();
+
+            switch(position) {
+
+                case Constants.NUMBER_CONVERTER:
+                    newFragment = FragmentNumConv.newInstance();
+                    break;
+
+                case Constants.HEX_TO_STRING:
+                    //TODO
+                    break;
+
+                    case Constants.MIPS_CONVERTER:
+                        newFragment = MipsCalculator.newInstance();
+                        break;
+            }
+
+            return newFragment;
     }
 
     @Override

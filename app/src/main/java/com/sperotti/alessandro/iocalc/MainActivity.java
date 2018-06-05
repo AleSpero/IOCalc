@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_main);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        TabLayout tabLayout = findViewById(R.id.sliding_tabs);
+        ViewPager viewPager = findViewById(R.id.viewpager);
 
 
        /* FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

@@ -15,9 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
-
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
@@ -61,21 +58,11 @@ public class MipsCalculator extends Fragment {
     String temp;
     String temphex;
 
-    Tracker mTracker;
-
     Toast toast;
 
     public static MipsCalculator newInstance() {
         MipsCalculator fragment = new MipsCalculator();
         return fragment;
-    }
-
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // Obtain the shared Tracker instance.
-        AnalyticsApplication application = (AnalyticsApplication) getActivity().getApplication();
-        mTracker = application.getDefaultTracker();
     }
 
     @Override
@@ -1114,21 +1101,6 @@ public class MipsCalculator extends Fragment {
 
         return view;
 
-
-    }
-
-
-    @Override
-    public void onResume() {
-
-        mTracker.setScreenName("Image~" + "MipsCalculator");
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-
-
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
-
-
-        super.onResume();
 
     }
 
