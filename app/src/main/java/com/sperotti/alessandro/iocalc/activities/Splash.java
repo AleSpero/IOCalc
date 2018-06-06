@@ -1,9 +1,11 @@
-package com.sperotti.alessandro.iocalc;
+package com.sperotti.alessandro.iocalc.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.sperotti.alessandro.iocalc.R;
 
 public class Splash extends Activity {
 

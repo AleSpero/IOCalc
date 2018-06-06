@@ -1,7 +1,9 @@
-package com.sperotti.alessandro.iocalc;
+package com.sperotti.alessandro.iocalc.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.sperotti.alessandro.iocalc.fragments.SettingsFragment;
 
 public class SettingsActivity extends AppCompatActivity {
 

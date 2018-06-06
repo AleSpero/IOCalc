@@ -1,4 +1,4 @@
-package com.sperotti.alessandro.iocalc;
+package com.sperotti.alessandro.iocalc.activities;
 
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.sperotti.alessandro.iocalc.BuildConfig;
+import com.sperotti.alessandro.iocalc.R;
 
 
 /**

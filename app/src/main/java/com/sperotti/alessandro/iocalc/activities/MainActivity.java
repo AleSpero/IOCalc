@@ -1,4 +1,4 @@
-package com.sperotti.alessandro.iocalc;
+package com.sperotti.alessandro.iocalc.activities;
 
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
@@ -10,6 +10,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.kobakei.ratethisapp.RateThisApp;
+import com.sperotti.alessandro.iocalc.R;
+import com.sperotti.alessandro.iocalc.utils.MainPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
 
-        viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(),
+        viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(),
                 tabLayout.getTabCount()));
 
         // Give the TabLayout the ViewPager

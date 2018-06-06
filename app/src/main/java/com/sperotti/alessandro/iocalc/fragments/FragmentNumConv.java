@@ -1,4 +1,4 @@
-package com.sperotti.alessandro.iocalc;
+package com.sperotti.alessandro.iocalc.fragments;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -16,7 +16,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.sperotti.alessandro.iocalc.utils.*;
+import com.sperotti.alessandro.iocalc.R;
 
 /**
  * Created by Alessandro on 27/11/2016.

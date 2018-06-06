@@ -1,8 +1,10 @@
-package com.sperotti.alessandro.iocalc;
+package com.sperotti.alessandro.iocalc.fragments;
 
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
+
+import com.sperotti.alessandro.iocalc.R;
 
 /**
  * Created by Alessandro on 17/11/2016.

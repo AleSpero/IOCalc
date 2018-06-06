@@ -1,19 +1,22 @@
-package com.sperotti.alessandro.iocalc;
+package com.sperotti.alessandro.iocalc.utils;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.sperotti.alessandro.iocalc.fragments.MipsCalculator;
+import com.sperotti.alessandro.iocalc.fragments.FragmentNumConv;
+
 /**
  * Created by Alessandro on 27/11/2016.
  */
 
-public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
+public class MainPagerAdapter extends FragmentPagerAdapter {
     private final int PAGE_COUNT = 2;
     private String tabTitles[] = new String[] { "Number Converter", "MIPS Converter"}; //"Hex To String", "MIPS Converter"};
     private int nTabs;
 
-    public SampleFragmentPagerAdapter(FragmentManager fm, int nTab) {
+    public MainPagerAdapter(FragmentManager fm, int nTab) {
         super(fm);
         this.nTabs=nTab;
     }
@@ -34,11 +37,11 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
                     newFragment = FragmentNumConv.newInstance();
                     break;
 
-                case Constants.HEX_TO_STRING:
+                /*case Constants.HEX_TO_STRING:
                     //TODO
-                    break;
+                    break;*/
 
-                    case Constants.MIPS_CONVERTER:
+                case 1://Constants.MIPS_CONVERTER:
                         newFragment = MipsCalculator.newInstance();
                         break;
             }

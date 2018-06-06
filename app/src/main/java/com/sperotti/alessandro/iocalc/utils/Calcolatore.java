@@ -1,4 +1,4 @@
-package com.sperotti.alessandro.iocalc;
+package com.sperotti.alessandro.iocalc.utils;
 
 import android.util.Log;
 

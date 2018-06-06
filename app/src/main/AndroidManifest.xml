@@ -12,15 +12,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.sperotti.alessandro.iocalc.MainActivity"
+        <activity android:name="com.sperotti.alessandro.iocalc.activities.MainActivity"
             android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name="com.sperotti.alessandro.iocalc.SettingsActivity"
+        <activity android:name="com.sperotti.alessandro.iocalc.activities.SettingsActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.sperotti.alessandro.iocalc.AboutActivity"
+        <activity android:name="com.sperotti.alessandro.iocalc.activities.AboutActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.sperotti.alessandro.iocalc.Splash"
+        <activity android:name="com.sperotti.alessandro.iocalc.activities.Splash"
             android:screenOrientation="portrait"><intent-filter>
             <action android:name="android.intent.action.MAIN" />
 

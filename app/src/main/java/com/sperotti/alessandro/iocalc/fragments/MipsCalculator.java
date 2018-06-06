@@ -1,7 +1,5 @@
-package com.sperotti.alessandro.iocalc;
+package com.sperotti.alessandro.iocalc.fragments;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,6 +12,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.sperotti.alessandro.iocalc.utils.*;
+
+import com.sperotti.alessandro.iocalc.R;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
