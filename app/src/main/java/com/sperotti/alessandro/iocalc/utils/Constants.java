@@ -12,6 +12,8 @@ public class Constants {
     public static final String TWO_COMPLEMENT = "compl2";
     public static final String UNSIGNED = "unsigned";
 
+    public static final String CHARSET = "charset";
+
     public static final int DECIMAL = 0;
     public static final int BINARY = 1;
     public static final int HEX = 2;

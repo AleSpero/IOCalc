@@ -2,6 +2,7 @@ package com.sperotti.alessandro.iocalc.utils;
 
 import android.util.Log;
 
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 /**
@@ -362,4 +363,26 @@ public class Calcolatore {
     return res.toUpperCase();
 
     }
+
+    public static String hexToStr(String hex, String charset){
+
+            while(hex.length()%2!=0){
+                hex = String.format("0%s", hex);
+            }
+
+            int l = hex.length();
+            byte[] data = new byte[l/2];
+            for (int i = 0; i < l; i += 2) {
+                data[i/2] = (byte) ((Character.digit(hex.charAt(i), 16) << 4)
+                        + Character.digit(hex.charAt(i+1), 16));
+            }
+        try {
+            return new String(data, charset);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
+

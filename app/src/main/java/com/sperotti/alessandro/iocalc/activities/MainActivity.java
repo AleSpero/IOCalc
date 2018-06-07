@@ -1,6 +1,8 @@
 package com.sperotti.alessandro.iocalc.activities;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,10 +13,12 @@ import android.view.MenuItem;
 
 import com.kobakei.ratethisapp.RateThisApp;
 import com.sperotti.alessandro.iocalc.R;
+import com.sperotti.alessandro.iocalc.utils.Constants;
 import com.sperotti.alessandro.iocalc.utils.MainPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onStart() {
@@ -63,12 +67,35 @@ public class MainActivity extends AppCompatActivity {
         config.setYesButtonText(R.string.ratenow);
         RateThisApp.init(config);
 
-
-
-
         setContentView(R.layout.activity_main);
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
-        ViewPager viewPager = findViewById(R.id.viewpager);
+        final ViewPager viewPager = findViewById(R.id.viewpager);
+        viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(),
+                tabLayout.getTabCount()));
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId()){
+                    case R.id.numconv:
+                        viewPager.setCurrentItem(Constants.NUMBER_CONVERTER);
+                        break;
+
+                    case R.id.hextostr:
+                        viewPager.setCurrentItem(Constants.HEX_TO_STRING);
+                        break;
+
+                    case R.id.mips_conv:
+                        viewPager.setCurrentItem(Constants.MIPS_CONVERTER);
+                        break;
+                }
+
+                return true;
+            }
+        });
+
 
 
        /* FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -77,12 +104,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
 
-        viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(),
-                tabLayout.getTabCount()));
+        /*viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager(),
+                tabLayout.getTabCount()));*/
 
         // Give the TabLayout the ViewPager
 
-        tabLayout.setupWithViewPager(viewPager);
+        //tabLayout.setupWithViewPager(viewPager);
 
 
 

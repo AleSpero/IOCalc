@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/numconv"
+        android:enabled="true"
+        android:icon="@drawable/ic_numeric"
+        android:title="@string/numconv_title"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/hextostr"
+        android:enabled="true"
+        android:icon="@drawable/ic_swap"
+        android:title="@string/hextostr_title"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/mips_conv"
+        android:enabled="true"
+        android:icon="@drawable/ic_desktop_classic"
+        android:title="@string/mips_converter"
+        app:showAsAction="ifRoom" />
+</menu>

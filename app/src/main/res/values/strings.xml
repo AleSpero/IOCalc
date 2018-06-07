@@ -4,6 +4,7 @@
     <string name="num_converter">Bin To Hex</string>
     <string name="mips_converter">MIPS Converter</string>
     <string name="numconv_title">Base Number Converter</string>
+    <string name="hextostr_title">Hex to String</string>
     <string name="decimal">Decimal</string>
     <string name="binary">Binary</string>
     <string name="hex">Hexadecimal</string>
@@ -30,5 +31,9 @@
     <string name="visitwebsite">Visit Website</string>
     <string name="copy">Copy Text</string>
     <string name="unsigned">Unsigned</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="strn">String</string>
 
 </resources>

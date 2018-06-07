@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/colorBackGround">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
 
     <TextView
         android:text="@string/numconv_title"
@@ -15,23 +22,27 @@
         android:id="@+id/textView"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginBottom="10dp"
         android:textStyle="normal|bold"
-        android:textSize="16sp" />
-
+        android:textSize="16sp"
+        />
 
 
     <LinearLayout
+        android:id="@+id/mainCard"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="40dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@android:color/white"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:elevation="10dp"
+        android:layout_centerInParent="true"
+        android:elevation="5dp"
         >
 
         <TextView
@@ -41,8 +52,7 @@
             android:id="@+id/textView2"
             android:textStyle="normal|bold"
             android:textColor="@color/colorAccent"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
+
             android:textSize="15sp" />
 
         <EditText
@@ -54,7 +64,6 @@
             android:singleLine="true"
             android:inputType="numberSigned"
             android:hint="1720"
-            android:layout_marginLeft="10dp"
             android:maxLength="31"/>
 
 
@@ -74,7 +83,6 @@
             android:textStyle="normal|bold"
             android:textColor="@color/colorAccent"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
             android:textSize="15sp" />
 
         <EditText
@@ -86,7 +94,6 @@
             android:singleLine="true"
             android:inputType="numberDecimal"
             android:hint="0110 1011 1000"
-            android:layout_marginLeft="10dp"
             android:maxLength="35"/>
 
 
@@ -105,7 +112,6 @@
             android:textStyle="normal|bold"
             android:textColor="@color/colorAccent"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
             android:textSize="15sp" />
 
         <EditText
@@ -117,7 +123,6 @@
             android:singleLine="true"
             android:inputType="textCapWords"
             android:hint="6B8"
-            android:layout_marginLeft="10dp"
             android:maxLength="31"/>
 
 
@@ -136,7 +141,6 @@
             android:textStyle="normal|bold"
             android:textColor="@color/colorAccent"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
             android:textSize="15sp" />
 
         <EditText
@@ -148,17 +152,20 @@
             android:singleLine="true"
             android:inputType="numberSigned"
             android:hint="3270"
-            android:layout_marginLeft="10dp"
             android:maxLength="31"/>
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="#80000000"
-            android:layout_marginTop="15dp"
-            />
 
     </LinearLayout>
+    </RelativeLayout>
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/clearBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="32dp"
+        android:src="@drawable/ic_clear"
+        app:layout_anchor="@id/mainCard"
+        app:layout_anchorGravity="bottom|right|end"/>
+
+</android.support.design.widget.CoordinatorLayout>

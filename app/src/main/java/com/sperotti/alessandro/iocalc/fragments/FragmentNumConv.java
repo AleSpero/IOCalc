@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -37,6 +38,7 @@ public class FragmentNumConv extends Fragment {
     EditText decimal;
     EditText hex;
     EditText oct;
+    FloatingActionButton clearBtn;
 
     //Risultati delle operazioni di conversione
 
@@ -66,7 +68,16 @@ public class FragmentNumConv extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_numconv, container, false);
 
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this.getActivity()); //Ottengo Preferences dal contesto attuale (la mia main activity)
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this.getActivity());//Ottengo Preferences dal contesto attuale (la mia main activity)
+
+        clearBtn = view.findViewById(R.id.clearBtn);
+
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showError(View.NO_ID, false);
+            }
+        });
 
         boolean format = pref.getBoolean("format", false); //Ottengo la checkbox per il format dei numeri binari
 
@@ -94,8 +105,6 @@ public class FragmentNumConv extends Fragment {
         }
 
         hex.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
-
-        //clear = (Button)findViewById(R.id.ClearBtn);
 
         //Controllo variazioni di input nei vari edittext
 
@@ -130,8 +139,12 @@ public class FragmentNumConv extends Fragment {
 
                                     //FAI IN MODO CHE NEL CASO DI UNSIGNED NON SIA INSERIRE IL MENO
 
+                                    if(numTemp < 0)
                                     binRes = Constants.TWO_COMPLEMENT.equals(binaryEncoding) ? Calcolatore.twosComplement(Calcolatore.binToDec(Math.abs(numTemp)))
                                             : Calcolatore.onesComplement(Calcolatore.binToDec(Math.abs(numTemp)));
+
+                                    else binRes = Calcolatore.binToDec(numTemp);
+
 
                                     //AGGIUNGO ZERI O UNI IN BASE ALLA CODIFICA SCELTA
 
@@ -411,12 +424,16 @@ public class FragmentNumConv extends Fragment {
 
     }
 
-    public void showError(int keepEdt){
+    public void showError(int keepEdt, boolean showSnackbar){
         if(keepEdt != Constants.DECIMAL) decimal.setText("");
         if(keepEdt != Constants.BINARY) binary.setText("");
         if(keepEdt != Constants.OCTAL) oct.setText("");
         if(keepEdt != Constants.HEX) hex.setText("");
-        if(!inputErrorSnackbar.isShown()) inputErrorSnackbar.show();
+        if(!inputErrorSnackbar.isShown() && showSnackbar) inputErrorSnackbar.show();
+    }
+
+    public void showError(int keepEdt){
+        showError(keepEdt, true);
     }
 
 }
